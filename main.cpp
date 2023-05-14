@@ -121,7 +121,25 @@ void displayBST()
     node->SearchStudent(1);
 }
 int main() {
-   displayMinHeap();
-   displayMaxHeap();
-   disPlayBST();
+    int choice;
+    cout << "Enter number of option: ";
+    cin >> choice;
+    if(choice == 1){
+           disPlayBST();
+    }
+    else if (choice == 2){//AVL}
+    
+    
+    else if(choice == 3){
+         displayMinHeap();
+    }
+
+     else if (choice == 4)
+     {
+         displayMaxHeap();
+     }
+     else if (choice == 5){
+          exit(0);
+     }
+
 }
