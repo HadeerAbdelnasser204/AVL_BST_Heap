@@ -12,6 +12,9 @@ void displayMaxHeap() {
     fstream file("Data.txt");
     int choice;
     while (true) {
+     cout <<"1. Add student\n"
+            "2. Print All (sorted by GPA)\n";
+        
         cout << "Enter number of option: ";
         cin >> choice;
         if (choice == 1) {
@@ -54,6 +57,9 @@ void displayMinHeap() {
     fstream file("Data.txt");
     int choice;
     while (true) {
+    cout <<"1. Add student\n"
+           "2. Print All (sorted by GPA)\n";
+        
         cout << "Enter number of option: ";
         cin >> choice;
         if (choice == 1) {
@@ -164,6 +170,11 @@ void displayBST()
 }
 int main() {
     int choice;
+    cout << "1. BST\n" 
+         << "2. AVL\n"
+         << "3. Min Heap\n"
+         << "4. Max Heap\n"
+         << "5. Exit Program\n";
     cout << "Enter number of option: ";
     cin >> choice;
     if(choice == 1){
