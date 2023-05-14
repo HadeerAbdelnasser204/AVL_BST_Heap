@@ -1,6 +1,3 @@
-//
-// Created by EGYPT on 5/14/2023.
-//
 #include "BST.h"
 #include <iostream>
 #include <vector>
@@ -11,8 +8,8 @@ BST::BST()
     right = NULL;
     left = NULL;
 }
-//insertion
-void BST :: AddStudent(vector<BST> students)
+//insert from file
+void BST :: AddStudentFromFile(vector<BST> students)
 {
     for( auto stud : students) {
 
@@ -50,8 +47,46 @@ void BST :: AddStudent(vector<BST> students)
                 prev->right = node;
             }
         }
-        cout << "The student is added.\n";
+
     }
+}
+void BST :: AddStudent(int id,string name,double gpa,string dept)
+{
+     BST *node = new BST, *current = root, *prev;
+        node->right = NULL;
+        node->left = NULL;
+        node->ID = id;
+        node->NAME = name;
+        node->GPA = gpa;
+        node->DEPT = dept;
+        //no student in the tree
+        if (root == NULL) {
+            root = node;
+        } else {
+            while (current != NULL) {
+                prev = current;
+                //current id greater than who will add
+                if (current->ID > node->ID) {
+                    current = current->left;
+                }
+                    //current id less than who will add
+                else if (current->ID < node->ID) {
+                    current = current->right;
+                }
+                    //this id added before
+                else {
+                    cout << "this student already exist\n";
+                    exit(0);
+                }
+
+            }
+            if (prev->ID > node->ID) {
+                prev->left = node;
+            } else {
+                prev->right = node;
+            }
+        }
+        cout<<"Student added :)\n";
 }
 //search
 bool BST :: searchFor(int id)
@@ -217,16 +252,16 @@ void BST:: RemoveStudent(int id)
     }
 }
 //inorder traversal
- void BST:: inorderTraversal(BST* node)
+ void BST:: print(BST* node)
 {
     if( node == NULL )
     {
         return;
     }
 
-    inorderTraversal(node->left);
+    print(node->left);
     cout<<"["<<node->ID<<", "<<node->NAME<<", "<<node->GPA<<", "<<node->DEPT<<"]\n";
-    inorderTraversal(node->right);
+    print(node->right);
 
 }
 //return root
@@ -234,4 +269,5 @@ BST* BST:: getRoot()
 {
     return root;
 }
+
 
