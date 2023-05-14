@@ -1,4 +1,7 @@
 #include <fstream>
+#include <vector>
+#include <string>
+#include "BST.h"
 #include "MaxHeap.h"
 #include "MinHeap.h"
 using namespace std;
@@ -84,8 +87,41 @@ void displayMinHeap() {
 
     }
 }
-
+void displayBST()
+{
+    ifstream File;
+    File.open("Data.txt",ios::out);
+    string line="";
+    int Num_Student;
+    getline(File,line);
+    Num_Student=stoi(line);
+    vector<BST> Students;
+    for(int i=0;i<Num_Student;i++)
+    {
+        BST stud;
+        //get ID
+        getline(File,line);
+        stud.ID=stoi(line);
+        //get Name
+        getline(File,line);
+        stud.NAME=line;
+        //get GPA
+        getline(File,line);
+        stud.GPA=stod(line);
+        //get Department
+        getline(File,line);
+        stud.DEPT=line;
+        Students.push_back(stud);
+    }
+    BST *node=new BST;
+    node->AddStudent(Students);
+    node->inorderTraversal(node->getRoot());
+    node->SearchStudent(20);
+    node->RemoveStudent(1);
+    node->SearchStudent(1);
+}
 int main() {
    displayMinHeap();
    displayMaxHeap();
+   disPlayBST();
 }
