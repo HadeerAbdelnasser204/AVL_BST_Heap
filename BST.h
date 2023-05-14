@@ -1,6 +1,4 @@
-//
-// Created by EGYPT on 5/13/2023.
-//
+
 #ifndef MAIN_CPP_BST_H
 #define MAIN_CPP_BST_H
 #include <iostream>
@@ -19,8 +17,10 @@ public:
 public:
     //constructor
     BST();
+    //insert from file
+    void AddStudentFromFile(vector<BST> students);
     //insertion
-    void AddStudent(vector<BST> students);
+    void AddStudent(int id,string name,double gpa,string dept);
     //search
     bool searchFor(int id);
     //Search For Student
@@ -28,7 +28,7 @@ public:
     //deletion
     void RemoveStudent(int id);
     //inorder traversal
-    void inorderTraversal(BST* node);
+    void print(BST* node);
 //get root of tree
     BST* getRoot();
 
