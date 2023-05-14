@@ -89,7 +89,10 @@ void displayMinHeap() {
 }
 void displayBST()
 {
+
     ifstream File;
+    BST *node=new BST;
+    int id;
     File.open("Data.txt",ios::out);
     string line="";
     int Num_Student;
@@ -113,12 +116,51 @@ void displayBST()
         stud.DEPT=line;
         Students.push_back(stud);
     }
-    BST *node=new BST;
-    node->AddStudent(Students);
-    node->inorderTraversal(node->getRoot());
-    node->SearchStudent(20);
-    node->RemoveStudent(1);
-    node->SearchStudent(1);
+    node->AddStudentFromFile(Students);
+    int opt;
+    cout<<"1. Add student\n"
+          "2. Remove student\n"
+          "3. Search student\n"
+          "4. Print All (sorted by id)\n"
+          "5. Return to main menu\n";
+    cout<<"enter your option >>\n";
+
+    cin>>opt;
+    if(opt == 1)
+    {
+
+        string name,dept;
+        double gpa;
+        cout<<"enter your ID :-\n";
+        cin>>id;
+        cout<<"enter your name :-\n";
+        cin>>name;
+        cout<<"enter your gpa :-\n";
+        cin>>gpa;
+        cout<<"enter your department :-\n";
+        cin>>dept;
+        node->AddStudent(id,name,gpa,dept);
+
+    }
+    else if(opt ==2)
+    {
+        cout<<"enter id of student will removed\n ";
+        cin>>id;
+        node->RemoveStudent(id);
+    }
+    else if(opt == 3)
+    {
+        cout<<"enter id of student \n ";
+        cin>>id;
+        node->SearchStudent(id);
+    }
+    else if(opt ==4)
+    {
+        node->print(node->getRoot());
+    }
+    else if(opt == 5)
+    {}
+
 }
 int main() {
     int choice;
