@@ -4,7 +4,10 @@
 #include "BST.h"
 #include "MaxHeap.h"
 #include "MinHeap.h"
+#include "AVL.h"
+
 using namespace std;
+
 void displayMaxHeap() {
     MaxHeap Data;
     Student student;
@@ -12,9 +15,9 @@ void displayMaxHeap() {
     fstream file("Data.txt");
     int choice;
     while (true) {
-     cout <<"1. Add student\n"
-            "2. Print All (sorted by GPA)\n";
-        
+        cout << "1. Add student\n"
+                "2. Print All (sorted by GPA)\n";
+
         cout << "Enter number of option: ";
         cin >> choice;
         if (choice == 1) {
@@ -57,9 +60,9 @@ void displayMinHeap() {
     fstream file("Data.txt");
     int choice;
     while (true) {
-    cout <<"1. Add student\n"
-           "2. Print All (sorted by GPA)\n";
-        
+        cout << "1. Add student\n"
+                "2. Print All (sorted by GPA)\n";
+
         cout << "Enter number of option: ";
         cin >> choice;
         if (choice == 1) {
@@ -93,107 +96,128 @@ void displayMinHeap() {
 
     }
 }
-void displayBST()
-{
+
+void displayBST() {
 
     ifstream File;
-    BST *node=new BST;
+    BST *node = new BST;
     int id;
-    File.open("Data.txt",ios::out);
-    string line="";
+    File.open("Data.txt", ios::out);
+    string line = "";
     int Num_Student;
-    getline(File,line);
-    Num_Student=stoi(line);
+    getline(File, line);
+    Num_Student = stoi(line);
     vector<BST> Students;
-    for(int i=0;i<Num_Student;i++)
-    {
+    for (int i = 0; i < Num_Student; i++) {
         BST stud;
         //get ID
-        getline(File,line);
-        stud.ID=stoi(line);
+        getline(File, line);
+        stud.ID = stoi(line);
         //get Name
-        getline(File,line);
-        stud.NAME=line;
+        getline(File, line);
+        stud.NAME = line;
         //get GPA
-        getline(File,line);
-        stud.GPA=stod(line);
+        getline(File, line);
+        stud.GPA = stod(line);
         //get Department
-        getline(File,line);
-        stud.DEPT=line;
+        getline(File, line);
+        stud.DEPT = line;
         Students.push_back(stud);
     }
     node->AddStudentFromFile(Students);
     int opt;
-    cout<<"1. Add student\n"
-          "2. Remove student\n"
-          "3. Search student\n"
-          "4. Print All (sorted by id)\n"
-          "5. Return to main menu\n";
-    cout<<"enter your option >>\n";
+    cout << "1. Add student\n"
+            "2. Remove student\n"
+            "3. Search student\n"
+            "4. Print All (sorted by id)\n"
+            "5. Return to main menu\n";
+    cout << "enter your option >>\n";
 
-    cin>>opt;
-    if(opt == 1)
-    {
+    cin >> opt;
+    if (opt == 1) {
 
-        string name,dept;
+        string name, dept;
         double gpa;
-        cout<<"enter your ID :-\n";
-        cin>>id;
-        cout<<"enter your name :-\n";
-        cin>>name;
-        cout<<"enter your gpa :-\n";
-        cin>>gpa;
-        cout<<"enter your department :-\n";
-        cin>>dept;
-        node->AddStudent(id,name,gpa,dept);
+        cout << "enter your ID :-\n";
+        cin >> id;
+        cout << "enter your name :-\n";
+        cin >> name;
+        cout << "enter your gpa :-\n";
+        cin >> gpa;
+        cout << "enter your department :-\n";
+        cin >> dept;
+        node->AddStudent(id, name, gpa, dept);
 
-    }
-    else if(opt ==2)
-    {
-        cout<<"enter id of student will removed\n ";
-        cin>>id;
+    } else if (opt == 2) {
+        cout << "enter id of student will removed\n ";
+        cin >> id;
         node->RemoveStudent(id);
-    }
-    else if(opt == 3)
-    {
-        cout<<"enter id of student \n ";
-        cin>>id;
+    } else if (opt == 3) {
+        cout << "enter id of student \n ";
+        cin >> id;
         node->SearchStudent(id);
-    }
-    else if(opt ==4)
-    {
+    } else if (opt == 4) {
         node->print(node->getRoot());
-    }
-    else if(opt == 5)
-    {}
+    } else if (opt == 5) {}
 
 }
-int main() {
-    while (true) {
+
+void displayAVL() {
+    AVL<AVLStudent> Tree;
+    AVLStudent newStudent;
+    fstream file("Data.txt");
     int choice;
-    cout << "1. BST\n" 
-         << "2. AVL\n"
-         << "3. Min Heap\n"
-         << "4. Max Heap\n"
-         << "5. Exit Program\n";
-    cout << "Enter number of option: "; 
-    cin >> choice;
-    if(choice == 1){
-           disPlayBST();
-    }
-    else if (choice == 2){//AVL}
-    
-    
-    else if(choice == 3){
-         displayMinHeap();
-    }
+    while (true) {
+        cout << "1. Add student\n"
+                "2. Print All (sorted by GPA)\n";
 
-     else if (choice == 4)
-     {
-         displayMaxHeap();
-     }
-     else if (choice == 5){
-          exit(0);
-     }
+        cout << "Enter number of option: ";
+        cin >> choice;
+        if (choice == 1) {
+            newStudent.StudentInfo();
+            Tree.insert(newStudent);
+            cout << "\nThe student is added." << endl;
+        } else if (choice == 2) {
+            newStudent.StudentInfo();
+            Tree.erase(newStudent);
+        } else if (choice == 3) {
+            newStudent.StudentInfo();
+            if (Tree.find(newStudent)) {
+                cout << "Student found!" << endl;
+            } else {
+                cout << "Student not found." << endl;
+            }
+
+        } else if (choice == 4) {
+            Tree.print();
+            cout << endl;
+        } else if (choice == 5) {
+            return;
+        }
+
+    }
 }
+
+int main() {
+    int choice;
+    while (true) {
+        cout << "1. BST\n"
+             << "2. AVL\n"
+             << "3. Min Heap\n"
+             << "4. Max Heap\n"
+             << "5. Exit Program\n";
+        cout << "Enter number of option: ";
+        cin >> choice;
+        if (choice == 1) {
+            displayBST();
+        } else if (choice == 2) {
+
+        } else if (choice == 3) {
+            displayMinHeap();
+        } else if (choice == 4) {
+            displayMaxHeap();
+        } else if (choice == 5) {
+            exit(0);
+        }
+    }
 }
