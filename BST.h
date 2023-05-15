@@ -13,7 +13,7 @@ public:
     int ID ;
     string DEPT,NAME;
     double GPA;
-    BST* right,*left;
+    BST *right,*left;
 public:
     //constructor
     BST();
@@ -21,14 +21,14 @@ public:
     void AddStudentFromFile(vector<BST> students);
     //insertion
     void AddStudent(int id,string name,double gpa,string dept);
-    //search
-    bool searchFor(int id);
+
     //Search For Student
     void SearchStudent(int id);
     //deletion
-    void RemoveStudent(int id);
+    void DeleteStudent(int item);
+    void DeleteFromTree(BST* &stud);
     //inorder traversal
-    void print(BST* node);
+    void inorder(BST* node);
 //get root of tree
     BST* getRoot();
 
