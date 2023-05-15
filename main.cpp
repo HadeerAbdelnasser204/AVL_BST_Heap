@@ -97,77 +97,71 @@ void displayMinHeap() {
     }
 }
 
-void BSTMenu()
-{
+void displayBST() {
 
     ifstream File;
-    BST *node=new BST;
+    BST *node = new BST;
     int id;
-    File.open("Data.txt",ios::out);
-    string line="";
+    File.open("Data.txt", ios::out);
+    string line = "";
     int Num_Student;
-    getline(File,line);
-    Num_Student=stoi(line);
+    getline(File, line);
+    Num_Student = stoi(line);
     vector<BST> Students;
-    for(int i=0;i<Num_Student;i++)
-    {
+    for (int i = 0; i < Num_Student; i++) {
         BST stud;
         //get ID
-        getline(File,line);
-        stud.ID=stoi(line);
+        getline(File, line);
+        stud.ID = stoi(line);
         //get Name
-        getline(File,line);
-        stud.NAME=line;
+        getline(File, line);
+        stud.NAME = line;
         //get GPA
-        getline(File,line);
-        stud.GPA=stod(line);
+        getline(File, line);
+        stud.GPA = stod(line);
         //get Department
-        getline(File,line);
-        stud.DEPT=line;
+        getline(File, line);
+        stud.DEPT = line;
         Students.push_back(stud);
     }
     node->AddStudentFromFile(Students);
-    while(true) {
-        int opt;
-        cout << "1. Add student\n"
-                "2. Remove student\n"
-                "3. Search student\n"
-                "4. Print All (sorted by id)\n"
-                "5. Return to main menu\n";
-        cout << "enter your option >>\n";
+    int opt;
+    cout << "1. Add student\n"
+            "2. Remove student\n"
+            "3. Search student\n"
+            "4. Print All (sorted by id)\n"
+            "5. Return to main menu\n";
+    cout << "enter your option >>\n";
 
-        cin >> opt;
-        if (opt == 1) {
-            string name, dept;
-            double gpa;
-            cout << "enter your ID :-\n";
-            cin >> id;
-            cout << "enter your name :-\n";
-            cin.ignore();
-            getline(cin,name);
-            cout << "enter your gpa :-\n";
-            cin.ignore();
-            cin >> gpa;
-            cout << "enter your department :-\n";
-            cin >> dept;
-            node->AddStudent(id, name, gpa, dept);
+    cin >> opt;
+    if (opt == 1) {
 
-        } else if (opt == 2) {
-            cout << "enter id of student will removed\n ";
-            cin >> id;
-            node->DeleteStudent(id);
-        } else if (opt == 3) {
-            cout << "enter id of student \n ";
-            cin >> id;
-            node->SearchStudent(id);
-        } else if (opt == 4) {
-            node->inorder(node->getRoot());
-        } else if (opt == 5) {
-            return;
-        }
-    }
+        string name, dept;
+        double gpa;
+        cout << "enter your ID :-\n";
+        cin >> id;
+        cout << "enter your name :-\n";
+        cin >> name;
+        cout << "enter your gpa :-\n";
+        cin >> gpa;
+        cout << "enter your department :-\n";
+        cin >> dept;
+        node->AddStudent(id, name, gpa, dept);
+
+    } else if (opt == 2) {
+        cout << "enter id of student will removed\n ";
+        cin >> id;
+        node->RemoveStudent(id);
+    } else if (opt == 3) {
+        cout << "enter id of student \n ";
+        cin >> id;
+        node->SearchStudent(id);
+    } else if (opt == 4) {
+        node->print(node->getRoot());
+    } else if (opt == 5) {}
 
 }
+
 void displayAVL() {
     AVL<AVLStudent> Tree;
     AVLStudent newStudent;
