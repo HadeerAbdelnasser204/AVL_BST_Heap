@@ -5,9 +5,11 @@
 #include <utility>
 #include <vector>
 #include <algorithm>
+
 using namespace std;
 #ifndef DS_MAXHEAP_H
 #define DS_MAXHEAP_H
+
 struct Student {
 
     int ID;
@@ -67,7 +69,7 @@ struct Student {
         setID(id);
         cout << "Name: ";
         cin.ignore();
-        getline(cin ,studentName);
+        getline(cin, studentName);
         setName(studentName);
         cout << "GPA: ";
         cin >> gpa;
@@ -85,14 +87,17 @@ private:
     vector<Student> maxHeap;
 public:
     MaxHeap() = default;
+
     void maxHeapify(int pos, int sz);
-    void addStudent(const Student &student);
+
+    void add(const Student &student);
+
     void sort();
+
     void printMaxHeap();
 
 
 };
-
 
 
 #endif //DS_MAXHEAP_H

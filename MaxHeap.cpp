@@ -1,4 +1,5 @@
 #include "MaxHeap.h"
+
 using namespace std;
 
 void MaxHeap::maxHeapify(int pos, int sz) {
@@ -24,7 +25,8 @@ void MaxHeap::maxHeapify(int pos, int sz) {
 
 
 }
-void MaxHeap::addStudent(const Student &student) {
+
+void MaxHeap::add(const Student &student) {
     maxHeap.push_back(student);
 
     int index = int(maxHeap.size()) - 1;

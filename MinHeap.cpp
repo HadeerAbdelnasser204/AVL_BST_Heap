@@ -1,10 +1,11 @@
 #include "MinHeap.h"
+
 using namespace std;
 
 void MinHeap::minHeapify(int pos, int sz) {
-    StudentData stud;
+    Student stud;
     int l = 2 * pos + 1;
-    int r= 2 * pos + 2;
+    int r = 2 * pos + 2;
     int minIndex = pos;
 
     if (l < sz && minHeap[l].GPA < minHeap[minIndex].GPA) {
@@ -24,7 +25,7 @@ void MinHeap::minHeapify(int pos, int sz) {
 
 }
 
-void MinHeap::add(const StudentData &student) {
+void MinHeap::add(const Student &student) {
     minHeap.push_back(student);
     int index = int(minHeap.size()) - 1;
 
