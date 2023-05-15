@@ -169,13 +169,14 @@ void displayBST()
 
 }
 int main() {
+    while (true) {
     int choice;
     cout << "1. BST\n" 
          << "2. AVL\n"
          << "3. Min Heap\n"
          << "4. Max Heap\n"
          << "5. Exit Program\n";
-    cout << "Enter number of option: ";
+    cout << "Enter number of option: "; 
     cin >> choice;
     if(choice == 1){
            disPlayBST();
@@ -194,5 +195,5 @@ int main() {
      else if (choice == 5){
           exit(0);
      }
-
+}
 }
